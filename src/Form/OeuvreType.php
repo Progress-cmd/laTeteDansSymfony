@@ -18,19 +18,24 @@ class OeuvreType extends AbstractType
     {
         $builder
             ->add('titre')
-            ->add('date_creation')
+            ->add('date_creation', null, [
+                'label' => 'Date de création',
+            ])
             ->add('description', null, [
                 'required' => false,
             ])
             ->add('est_detruite', null, [
+                'label' => 'Détruite',
                 'required' => false,
             ])
             ->add('oeuvre_recouverte', EntityType::class, [
+                'label' => 'Œuvre recouverte',
                 'class' => Oeuvre::class,
                 'choice_label' => 'titre',
                 'required' => false,
             ])
             ->add('lieux', EntityType::class, [
+                'label' => 'Lieu',
                 'class' => Lieux::class,
                 'choice_label' => 'nom',
                 'required' => false,

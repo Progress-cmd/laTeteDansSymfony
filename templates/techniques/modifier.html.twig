@@ -3,11 +3,11 @@
 {% block title %}Techniques{% endblock %}
 
 {% block body %}
-    <h1>Modifier techniques</h1>
+    <h1>Modifier une technique</h1>
 
     {{ form(formulaire) }}
 
-    <a href="{{ path('app_techniques') }}">Retour</a>
+    <a href="{{ path('app_techniques') }}" class="btn-text theme-secondary">Retour</a>
 
     {{ include('techniques/_delete_form.html.twig') }}
 {% endblock %}

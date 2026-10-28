@@ -5,7 +5,7 @@
 {% block body %}
     <h1>Œuvres</h1>
 
-    <table class="table">
+    <table class="table table-hover align-middle">
         <thead>
             <tr>
                 <th>Id</th>
@@ -25,8 +25,8 @@
                 <td>{{ oeuvre.description }}</td>
                 <td>{{ oeuvre.estDetruite ? 'Oui' : 'Non' }}</td>
                 <td>
-                    <a href="{{ path('app_afficher_oeuvres', {'id': oeuvre.id}) }}">Afficher</a>
-                    <a href="{{ path('app_modifier_oeuvres', {'id': oeuvre.id}) }}">Modifier</a>
+                    <a href="{{ path('app_afficher_oeuvres', {'id': oeuvre.id}) }}" class="btn-outline theme-secondary btn-sm">Afficher</a>
+                    <a href="{{ path('app_modifier_oeuvres', {'id': oeuvre.id}) }}" class="btn-solid theme-primary btn-sm">Modifier</a>
                 </td>
             </tr>
         {% else %}
@@ -37,5 +37,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_ajouter_oeuvres') }}">Nouvelle œuvre</a>
+    <a href="{{ path('app_ajouter_oeuvres') }}" class="btn-solid theme-primary">Nouvelle œuvre</a>
 {% endblock %}

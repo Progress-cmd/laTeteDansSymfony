@@ -16,7 +16,7 @@
                 <td>{{ artiste.pseudonyme }}</td>
             </tr>
             <tr>
-                <th>Nom reel</th>
+                <th>Nom réel</th>
                 <td>{{ artiste.nomReel }}</td>
             </tr>
             <tr>
@@ -30,9 +30,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_artistes') }}">Retour</a>
+    <a href="{{ path('app_artistes') }}" class="btn-text theme-secondary">Retour</a>
 
-    <a href="{{ path('app_modifier_artistes', {'id': artiste.id}) }}">Modifier</a>
+    <a href="{{ path('app_modifier_artistes', {'id': artiste.id}) }}" class="btn-solid theme-primary">Modifier</a>
 
     {{ include('artistes/_supprimer_form.html.twig') }}
 {% endblock %}

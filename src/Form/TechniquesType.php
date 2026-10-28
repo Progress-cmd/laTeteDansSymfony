@@ -17,6 +17,7 @@ class TechniquesType extends AbstractType
         $builder
             ->add('nom')
             ->add('oeuvres', EntityType::class, [
+                'label' => 'Œuvres',
                 'class' => Oeuvre::class,
                 'choice_label' => 'id',
                 'multiple' => true,

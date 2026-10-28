@@ -34,9 +34,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_lieux') }}">Retour</a>
+    <a href="{{ path('app_lieux') }}" class="btn-text theme-secondary">Retour</a>
 
-    <a href="{{ path('app_modifier_lieux', {'id': lieux.id}) }}">Modifier</a>
+    <a href="{{ path('app_modifier_lieux', {'id': lieux.id}) }}" class="btn-solid theme-primary">Modifier</a>
 
     {{ include('lieux/_supprimer_form.html.twig') }}
 {% endblock %}

@@ -28,9 +28,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_photos') }}">Retour</a>
+    <a href="{{ path('app_photos') }}" class="btn-text theme-secondary">Retour</a>
 
-    <a href="{{ path('app_modifier_photos', {'id': photo.id}) }}">Modifier</a>
+    <a href="{{ path('app_modifier_photos', {'id': photo.id}) }}" class="btn-solid theme-primary">Modifier</a>
 
     {{ include('photo/_supprimer_form.html.twig') }}
 {% endblock %}

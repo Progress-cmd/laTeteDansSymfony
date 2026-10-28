@@ -3,9 +3,9 @@
 {% block title %}Lieux{% endblock %}
 
 {% block body %}
-    <h1>Lieux index</h1>
+    <h1>Lieux</h1>
 
-    <table class="table">
+    <table class="table table-hover align-middle">
         <thead>
             <tr>
                 <th>Id</th>
@@ -14,7 +14,7 @@
                 <th>Quartier</th>
                 <th>Latitude</th>
                 <th>Longitude</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -27,8 +27,8 @@
                 <td>{{ lieux.latitude }}</td>
                 <td>{{ lieux.longitude }}</td>
                 <td>
-                    <a href="{{ path('app_afficher_lieux', {'id': lieux.id}) }}">Afficher</a>
-                    <a href="{{ path('app_modifier_lieux', {'id': lieux.id}) }}">Modifier</a>
+                    <a href="{{ path('app_afficher_lieux', {'id': lieux.id}) }}" class="btn-outline theme-secondary btn-sm">Afficher</a>
+                    <a href="{{ path('app_modifier_lieux', {'id': lieux.id}) }}" class="btn-solid theme-primary btn-sm">Modifier</a>
                 </td>
             </tr>
         {% else %}
@@ -39,5 +39,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_ajouter_lieux') }}">Nouveau lieu</a>
+    <a href="{{ path('app_ajouter_lieux') }}" class="btn-solid theme-primary">Nouveau lieu</a>
 {% endblock %}

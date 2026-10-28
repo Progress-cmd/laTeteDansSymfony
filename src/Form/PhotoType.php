@@ -22,7 +22,9 @@ class PhotoType extends AbstractType
         $nouvellePhoto = null === ($options['data'] ?? null)?->getId();
 
         $builder
-            ->add('date_prise_vue')
+            ->add('date_prise_vue', null, [
+                'label' => 'Date de prise de vue',
+            ])
             ->add('nom_fichier', FileType::class, [
                 'label' => 'Image',
                 'mapped' => false,
@@ -32,12 +34,16 @@ class PhotoType extends AbstractType
                     new Image(maxSize: '2M'),
                 ]),
             ])
-            ->add('etat_oeuvre')
+            ->add('etat_oeuvre', null, [
+                'label' => "État de l'œuvre",
+            ])
             ->add('benevole', EntityType::class, [
+                'label' => 'Bénévole',
                 'class' => Benevole::class,
                 'choice_label' => 'email',
             ])
             ->add('oeuvre', EntityType::class, [
+                'label' => 'Œuvre',
                 'class' => Oeuvre::class,
                 'choice_label' => 'titre',
                 'required' => false,

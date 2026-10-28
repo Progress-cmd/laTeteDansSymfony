@@ -16,10 +16,15 @@ class ArtistesType extends AbstractType
     {
         $builder
             ->add('pseudonyme')
-            ->add('nom_reel')
+            ->add('nom_reel', null, [
+                'label' => 'Nom réel',
+            ])
             ->add('bio')
-            ->add('nationalite')
+            ->add('nationalite', null, [
+                'label' => 'Nationalité',
+            ])
             ->add('oeuvres', EntityType::class, [
+                'label' => 'Œuvres',
                 'class' => Oeuvre::class,
                 'choice_label' => 'id',
                 'multiple' => true,
