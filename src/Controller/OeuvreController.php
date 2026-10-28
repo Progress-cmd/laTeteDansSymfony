@@ -67,15 +67,4 @@ final class OeuvreController extends AbstractController
             'formulaire' => $form,
         ]);
     }
-
-    #[Route('/supprimer-oeuvre/{id}', name: 'app_supprimer_oeuvres')]
-    public function delete(Request $request, Oeuvre $oeuvre, EntityManagerInterface $entityManager): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$oeuvre->getId(), $request->getPayload()->getString('_token'))) {
-            $entityManager->remove($oeuvre);
-            $entityManager->flush();
-        }
-
-        return $this->redirectToRoute('app_oeuvres');
-    }
 }

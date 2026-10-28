@@ -1,4 +1,0 @@
-<form method="post" action="{{ path('app_supprimer_oeuvres', {'id': oeuvre.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer {{ oeuvre.titre|e('js') }} ?');">
-    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ oeuvre.id) }}">
-    <button class="btn">Supprimer</button>
-</form>
