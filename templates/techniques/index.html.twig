@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Techniques{% endblock %}
+
+{% block body %}
+    <h1>Techniques index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for technique in techniques %}
+            <tr>
+                <td>{{ technique.id }}</td>
+                <td>{{ technique.nom }}</td>
+                <td>
+                    <a href="{{ path('app_afficher_techniques', {'id': technique.id}) }}">Afficher</a>
+                    <a href="{{ path('app_modifier_techniques', {'id': technique.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">Aucune technique</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_ajouter_techniques') }}">Nouvelle technique</a>
+{% endblock %}

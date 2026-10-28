@@ -13,6 +13,7 @@ final class MenuController extends AbstractController
             ['route' => 'app_home', 'label' => 'Accueil'],
             ['route' => 'app_artistes', 'label' => 'Artistes'],
             ['route' => 'app_lieux', 'label' => 'Lieux'],
+            ['route' => 'app_techniques', 'label' => 'Techniques'],
         ];
 
         return $this->render('menu/_menu.html.twig', [

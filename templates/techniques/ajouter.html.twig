@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Techniques{% endblock %}
+
+{% block body %}
+    <h1>Créer une techniques</h1>
+
+    {{ form(formulaire) }}
+
+    <a href="{{ path('app_techniques') }}">Retour</a>
+{% endblock %}
