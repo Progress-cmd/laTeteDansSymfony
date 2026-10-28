@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lieux{% endblock %}
+
+{% block body %}
+    <h1>Lieux index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Adresse</th>
+                <th>Quartier</th>
+                <th>Latitude</th>
+                <th>Longitude</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for lieux in lieuxes %}
+            <tr>
+                <td>{{ lieux.id }}</td>
+                <td>{{ lieux.nom }}</td>
+                <td>{{ lieux.adresse }}</td>
+                <td>{{ lieux.quartier }}</td>
+                <td>{{ lieux.latitude }}</td>
+                <td>{{ lieux.longitude }}</td>
+                <td>
+                    <a href="{{ path('app_afficher_lieux', {'id': lieux.id}) }}">Afficher</a>
+                    <a href="{{ path('app_modifier_lieux', {'id': lieux.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">Aucun lieu</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_ajouter_lieux') }}">Nouveau lieu</a>
+{% endblock %}

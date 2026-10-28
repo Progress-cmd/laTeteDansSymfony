@@ -1,4 +1,0 @@
-<form method="post" action="{{ path('app_supprimer_artistes', {'id': artiste.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer {{ artiste.pseudonyme|e('js') }} ?');">
-    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ artiste.id) }}">
-    <button class="btn-solid theme-danger">Supprimer</button>
-</form>

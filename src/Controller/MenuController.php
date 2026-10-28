@@ -12,6 +12,7 @@ final class MenuController extends AbstractController
         $links = [
             ['route' => 'app_home', 'label' => 'Accueil'],
             ['route' => 'app_artistes', 'label' => 'Artistes'],
+            ['route' => 'app_lieux', 'label' => 'Lieux'],
         ];
 
         return $this->render('menu/_menu.html.twig', [

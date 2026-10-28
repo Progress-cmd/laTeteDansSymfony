@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lieu{% endblock %}
+
+{% block body %}
+    <h1>Créer un nouveau lieu</h1>
+
+    {{ form(formulaire) }}
+
+    <a href="{{ path('app_lieux') }}">Retour</a>
+{% endblock %}

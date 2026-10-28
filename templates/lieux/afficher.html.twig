@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lieux{% endblock %}
+
+{% block body %}
+    <h1>Lieux</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ lieux.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ lieux.nom }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ lieux.adresse }}</td>
+            </tr>
+            <tr>
+                <th>Quartier</th>
+                <td>{{ lieux.quartier }}</td>
+            </tr>
+            <tr>
+                <th>Latitude</th>
+                <td>{{ lieux.latitude }}</td>
+            </tr>
+            <tr>
+                <th>Longitude</th>
+                <td>{{ lieux.longitude }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_lieux') }}">Retour</a>
+
+    <a href="{{ path('app_modifier_lieux', {'id': lieux.id}) }}">Modifier</a>
+
+    {{ include('lieux/_supprimer_form.html.twig') }}
+{% endblock %}

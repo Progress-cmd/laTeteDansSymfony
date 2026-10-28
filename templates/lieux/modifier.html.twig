@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lieux{% endblock %}
+
+{% block body %}
+    <h1>Modifier un lieu</h1>
+
+    {{ form(formulaire) }}
+    <a href="{{ path('app_lieux') }}">Retour</a>
+
+    {{ include('lieux/_supprimer_form.html.twig') }}
+{% endblock %}
