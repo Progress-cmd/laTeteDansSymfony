@@ -38,8 +38,11 @@ security:
 
     # Note: Only the *first* matching rule is applied
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+        # Pages accessibles sans être connecté : l'accueil et la connexion
+        - { path: ^/$, roles: PUBLIC_ACCESS }
+        - { path: ^/login, roles: PUBLIC_ACCESS }
+        # Tout le reste demande d'être connecté
+        - { path: ^/, roles: ROLE_USER }
 
 when@test:
     security:
