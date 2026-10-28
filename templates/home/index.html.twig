@@ -1,20 +1,90 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Art de Rue{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<div class="container py-6">
+    <h1 class="mb-6">Les œuvres</h1>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <div class="row row-cols-1 md:row-cols-2 lg:row-cols-3 g-5">
+        {% for oeuvre in oeuvres %}
+            {# La photo la plus récente sert d'image de couverture #}
+            {% set photos = oeuvre.photos|sort((a, b) => b.datePriseVue <=> a.datePriseVue) %}
+            {% set couverture = photos|first %}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/home/progon/Documents/03_Scolaire/04_Enseignement_Supérieur/B2/Modules/Alan-Symfony/Code/ArtDeRue/src/Controller/HomeController.php</code></li>
-        <li>Your template at <code>/home/progon/Documents/03_Scolaire/04_Enseignement_Supérieur/B2/Modules/Alan-Symfony/Code/ArtDeRue/templates/home/index.html.twig</code></li>
-    </ul>
+            <div class="col">
+                <article class="card h-100">
+                    {% if couverture %}
+                        <img src="{{ asset(couverture.nomFichier) }}" alt="{{ oeuvre.titre }}" class="card-img-top object-fit-cover" style="height: 220px;">
+                    {% endif %}
+
+                    <div class="card-body">
+                        <div class="d-flex flex-wrap gap-2 mb-3">
+                            {% if oeuvre.estDetruite %}
+                                <span class="badge badge-subtle theme-danger">Détruite</span>
+                            {% else %}
+                                <span class="badge badge-subtle theme-success">Visible</span>
+                            {% endif %}
+                            {% for technique in oeuvre.techniques %}
+                                <span class="badge badge-outline theme-secondary">{{ technique.nom }}</span>
+                            {% endfor %}
+                        </div>
+
+                        <h2 class="h5 mb-1">{{ oeuvre.titre }}</h2>
+                        <p class="fg-3 small mb-3">
+                            Créée le {{ oeuvre.dateCreation|date('d/m/Y') }}
+                            {% if oeuvre.artistes is not empty %}
+                                par {{ oeuvre.artistes|map(a => a.pseudonyme)|join(', ', ' et ') }}
+                            {% endif %}
+                        </p>
+
+                        {% if oeuvre.description %}
+                            <p>{{ oeuvre.description }}</p>
+                        {% endif %}
+
+                        {% if oeuvre.lieux %}
+                            <p class="small mb-2">
+                                <strong>{{ oeuvre.lieux.nom }}</strong><br>
+                                {{ oeuvre.lieux.adresse }}{% if oeuvre.lieux.quartier %} — {{ oeuvre.lieux.quartier }}{% endif %}
+                                {% if oeuvre.lieux.latitude and oeuvre.lieux.longitude %}
+                                    <br><span class="fg-3">GPS : {{ oeuvre.lieux.latitude }}, {{ oeuvre.lieux.longitude }}</span>
+                                {% endif %}
+                            </p>
+                        {% endif %}
+
+                        {% for artiste in oeuvre.artistes %}
+                            <p class="small mb-2">
+                                <strong>{{ artiste.pseudonyme }}</strong>
+                                {% if artiste.nomReel or artiste.nationalite %}
+                                    <span class="fg-3">({{ [artiste.nomReel, artiste.nationalite]|filter(v => v)|join(', ') }})</span>
+                                {% endif %}
+                                {% if artiste.bio %}<br>{{ artiste.bio }}{% endif %}
+                            </p>
+                        {% endfor %}
+
+                        {% if oeuvre.oeuvreRecouverte %}
+                            <p class="small fg-3 mb-0">Recouvre l'œuvre « {{ oeuvre.oeuvreRecouverte.titre }} »</p>
+                        {% endif %}
+                    </div>
+
+                    {% if photos is not empty %}
+                        <div class="card-footer small">
+                            <strong>{{ photos|length }} photo{{ photos|length > 1 ? 's' }}</strong>
+                            <ul class="mb-0">
+                                {% for photo in photos %}
+                                    <li>
+                                        {{ photo.datePriseVue|date('d/m/Y') }} — {{ photo.etatOeuvre }}
+                                        <span class="fg-3">(par {{ photo.benevole.prenom }})</span>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endif %}
+                </article>
+            </div>
+        {% else %}
+            <p>Aucune œuvre pour le moment.</p>
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}
