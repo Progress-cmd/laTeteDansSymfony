@@ -9,6 +9,7 @@
         <thead>
             <tr>
                 <th>Id</th>
+                <th>Image</th>
                 <th>Date de prise de vue</th>
                 <th>Nom du fichier</th>
                 <th>État de l'œuvre</th>
@@ -19,6 +20,7 @@
         {% for photo in photos %}
             <tr>
                 <td>{{ photo.id }}</td>
+                <td><img src="{{ asset(photo.nomFichier) }}" alt="{{ photo.nomFichier }}" width="100"></td>
                 <td>{{ photo.datePriseVue ? photo.datePriseVue|date('d/m/Y H:i') : '' }}</td>
                 <td>{{ photo.nomFichier }}</td>
                 <td>{{ photo.etatOeuvre }}</td>
@@ -29,7 +31,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">Aucune photo</td>
+                <td colspan="6">Aucune photo</td>
             </tr>
         {% endfor %}
         </tbody>

@@ -117,7 +117,7 @@ class AppFixtures extends Fixture
             for ($j = 0; $j < $faker->numberBetween(1, 3); ++$j) {
                 $photo = new Photo();
                 $photo->setDatePriseVue($faker->dateTimeBetween($oeuvre->getDateCreation(), 'now'))
-                    ->setNomFichier($faker->uuid().'.jpg')
+                    ->setNomFichier('Photos/'.$faker->uuid().'.jpg')
                     ->setEtatOeuvre($faker->randomElement($etats))
                     ->setBenevole($faker->randomElement($benevoles))
                     ->setOeuvre($oeuvre);
