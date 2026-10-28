@@ -23,7 +23,7 @@ final class ArtistesController extends AbstractController
     }
 
     #[Route('/creer-artiste', name: 'app_creer_artistes')]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function creer(Request $request, EntityManagerInterface $entityManager): Response
     {
         $artiste = new Artistes();
         $form = $this->createForm(ArtistesType::class, $artiste);
@@ -42,8 +42,8 @@ final class ArtistesController extends AbstractController
         ]);
     }
 
-    #[Route('/afficher-artiste{id}', name: 'app_afficher_artistes')]
-    public function show(Artistes $artiste): Response
+    #[Route('/afficher-artiste/{id}', name: 'app_afficher_artistes')]
+    public function afficher(Artistes $artiste): Response
     {
         return $this->render('artistes/afficher.html.twig', [
             'artiste' => $artiste,
@@ -51,7 +51,7 @@ final class ArtistesController extends AbstractController
     }
 
     #[Route('/modifier-artiste/{id}', name: 'app_modifier_artistes')]
-    public function edit(Request $request, Artistes $artiste, EntityManagerInterface $entityManager): Response
+    public function modifier(Request $request, Artistes $artiste, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(ArtistesType::class, $artiste);
         $form->handleRequest($request);
@@ -68,14 +68,14 @@ final class ArtistesController extends AbstractController
         ]);
     }
 
-    #[Route('/supprimer-artiste/{id}', name: 'app_supprimer_artistes')]
-    public function delete(Request $request, Artistes $artiste, EntityManagerInterface $entityManager): Response
+    #[Route('/supprimer-artiste/{id}', name: 'app_supprimer_artistes', methods: ['POST'])]
+    public function supprimer(Request $request, Artistes $artiste, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$artiste->getId(), $request->getPayload()->getString('_token'))) {
             $entityManager->remove($artiste);
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_artistes');
+        return $this->redirectToRoute('app_artistes', [], Response::HTTP_SEE_OTHER);
     }
 }
