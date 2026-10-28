@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Artistes{% endblock %}
+
+{% block body %}
+    <h1>Artistes</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Pseudonyme</th>
+                <th>Nom_reel</th>
+                <th>Bio</th>
+                <th>Nationalite</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for artiste in artistes %}
+            <tr>
+                <td>{{ artiste.id }}</td>
+                <td>{{ artiste.pseudonyme }}</td>
+                <td>{{ artiste.nomReel }}</td>
+                <td>{{ artiste.bio }}</td>
+                <td>{{ artiste.nationalite }}</td>
+                <td>
+                    <a href="{{ path('app_afficher_artistes', {'id': artiste.id}) }}">Afficher</a>
+                    <a href="{{ path('app_modifier_artistes', {'id': artiste.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">Aucun artiste</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_creer_artistes') }}">Nouvel artistes</a>
+{% endblock %}

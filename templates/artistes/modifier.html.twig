@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Artistes{% endblock %}
+
+{% block body %}
+    <h1>Modifier un artistes</h1>
+
+    {{ form(formulaire) }}
+
+    <a href="{{ path('app_artistes') }}">Retour</a>
+
+    {{ include('artistes/_delete_form.html.twig') }}
+{% endblock %}

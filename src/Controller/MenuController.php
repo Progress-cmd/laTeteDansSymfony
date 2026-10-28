@@ -9,8 +9,14 @@ final class MenuController extends AbstractController
 {
     public function _menu(?string $currentRoute = null): Response
     {
+        $links = [
+            ['route' => 'app_home', 'label' => 'Accueil'],
+            ['route' => 'app_artistes', 'label' => 'Artistes'],
+        ];
+
         return $this->render('menu/_menu.html.twig', [
             'currentRoute' => $currentRoute,
+            'links' => $links,
         ]);
     }
 }
