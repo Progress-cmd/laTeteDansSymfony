@@ -1,0 +1,43 @@
+{% set links = [
+    { route: 'app_home', label: 'Accueil' },
+] %}
+
+<nav class="navbar lg:navbar-expand bg-1 border-bottom">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="{{ path('app_home') }}">Art de Rue</a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="drawer" data-bs-target="#mainMenu" aria-controls="mainMenu" aria-label="Ouvrir le menu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <dialog class="drawer drawer-end" id="mainMenu" aria-labelledby="mainMenuLabel">
+            <div class="drawer-header">
+                <h5 class="drawer-title" id="mainMenuLabel">Art de Rue</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="drawer" aria-label="Fermer"></button>
+            </div>
+
+            <div class="drawer-body">
+                <ul class="navbar-nav">
+                    {% for link in links %}
+                        <li class="nav-item">
+                            <a class="nav-link{{ currentRoute == link.route ? ' active' }}"
+                               href="{{ path(link.route) }}"
+                               {{ currentRoute == link.route ? 'aria-current="page"' }}>
+                                {{ link.label }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+
+                <div class="ms-auto d-flex align-items-center gap-3">
+                    {% if is_granted('IS_AUTHENTICATED') %}
+                        <span class="navbar-text">{{ app.user.prenom }} {{ app.user.nom }}</span>
+                        <a class="btn-outline theme-secondary" href="{{ path('app_logout') }}">Déconnexion</a>
+                    {% else %}
+                        <a class="btn-solid theme-primary" href="{{ path('app_login') }}">Connexion</a>
+                    {% endif %}
+                </div>
+            </div>
+        </dialog>
+    </div>
+</nav>
