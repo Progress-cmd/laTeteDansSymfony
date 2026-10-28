@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Œuvres{% endblock %}
+
+{% block body %}
+    <h1>Modifier une œuvre</h1>
+
+    {{ form(formulaire) }}
+
+    <a href="{{ path('app_oeuvres') }}">Retour</a>
+
+    {{ include('oeuvre/_supprimer_form.html.twig') }}
+{% endblock %}

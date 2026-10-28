@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Œuvres{% endblock %}
+
+{% block body %}
+    <h1>Créer une nouvelle œuvre</h1>
+
+    {{ form(formulaire) }}
+
+    <a href="{{ path('app_oeuvres') }}">Retour</a>
+{% endblock %}

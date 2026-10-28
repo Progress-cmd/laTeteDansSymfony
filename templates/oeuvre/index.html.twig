@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Œuvres{% endblock %}
+
+{% block body %}
+    <h1>Œuvres</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Date de création</th>
+                <th>Description</th>
+                <th>Détruite</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for oeuvre in oeuvres %}
+            <tr>
+                <td>{{ oeuvre.id }}</td>
+                <td>{{ oeuvre.titre }}</td>
+                <td>{{ oeuvre.dateCreation ? oeuvre.dateCreation|date('d/m/Y') : '' }}</td>
+                <td>{{ oeuvre.description }}</td>
+                <td>{{ oeuvre.estDetruite ? 'Oui' : 'Non' }}</td>
+                <td>
+                    <a href="{{ path('app_afficher_oeuvres', {'id': oeuvre.id}) }}">Afficher</a>
+                    <a href="{{ path('app_modifier_oeuvres', {'id': oeuvre.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">Aucune œuvre</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_ajouter_oeuvres') }}">Nouvelle œuvre</a>
+{% endblock %}

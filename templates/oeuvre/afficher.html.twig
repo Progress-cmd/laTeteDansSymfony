@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Œuvres{% endblock %}
+
+{% block body %}
+    <h1>Œuvre</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ oeuvre.id }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ oeuvre.titre }}</td>
+            </tr>
+            <tr>
+                <th>Date de création</th>
+                <td>{{ oeuvre.dateCreation ? oeuvre.dateCreation|date('d/m/Y') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ oeuvre.description }}</td>
+            </tr>
+            <tr>
+                <th>Détruite</th>
+                <td>{{ oeuvre.estDetruite ? 'Oui' : 'Non' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_oeuvres') }}">Retour</a>
+
+    <a href="{{ path('app_modifier_oeuvres', {'id': oeuvre.id}) }}">Modifier</a>
+
+    {{ include('oeuvre/_supprimer_form.html.twig') }}
+{% endblock %}
