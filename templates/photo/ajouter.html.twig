@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Photos{% endblock %}
+
+{% block body %}
+    <h1>Ajouter une nouvelle photo</h1>
+
+    {{ form(formulaire) }}
+
+    <a href="{{ path('app_photos') }}">Retour</a>
+{% endblock %}

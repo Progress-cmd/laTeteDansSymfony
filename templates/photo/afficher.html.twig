@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Photos{% endblock %}
+
+{% block body %}
+    <h1>Photo</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ photo.id }}</td>
+            </tr>
+            <tr>
+                <th>Date de prise de vue</th>
+                <td>{{ photo.datePriseVue ? photo.datePriseVue|date('d/m/Y H:i') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Nom du fichier</th>
+                <td>{{ photo.nomFichier }}</td>
+            </tr>
+            <tr>
+                <th>État de l'œuvre</th>
+                <td>{{ photo.etatOeuvre }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_photos') }}">Retour</a>
+
+    <a href="{{ path('app_modifier_photos', {'id': photo.id}) }}">Modifier</a>
+
+    {{ include('photo/_supprimer_form.html.twig') }}
+{% endblock %}

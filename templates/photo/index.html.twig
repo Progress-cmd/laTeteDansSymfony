@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Photos{% endblock %}
+
+{% block body %}
+    <h1>Photos</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date de prise de vue</th>
+                <th>Nom du fichier</th>
+                <th>État de l'œuvre</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for photo in photos %}
+            <tr>
+                <td>{{ photo.id }}</td>
+                <td>{{ photo.datePriseVue ? photo.datePriseVue|date('d/m/Y H:i') : '' }}</td>
+                <td>{{ photo.nomFichier }}</td>
+                <td>{{ photo.etatOeuvre }}</td>
+                <td>
+                    <a href="{{ path('app_afficher_photos', {'id': photo.id}) }}">Afficher</a>
+                    <a href="{{ path('app_modifier_photos', {'id': photo.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">Aucune photo</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_ajouter_photos') }}">Nouvelle photo</a>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Photos{% endblock %}
+
+{% block body %}
+    <h1>Modifier une photo</h1>
+
+    {{ form(formulaire) }}
+
+    <a href="{{ path('app_photos') }}">Retour</a>
+
+    {{ include('photo/_supprimer_form.html.twig') }}
+{% endblock %}
